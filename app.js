@@ -14,7 +14,7 @@ const authRouter = require('./routes/auth.router');
 
 // MONGOOSE CONNECTION
 mongoose
-  .connect(process.env.MONGODB_URI, {
+  .connect(process.env.MONGODB_SL, {
     keepAlive: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
