@@ -15,8 +15,12 @@ const storage =  cloudinaryStorage({
   folder: "oh-review", // The name of the folder in cloudinary
   allowedFormats: ['jpg', 'png', 'jpeg', 'gif'],
   transformation: [{ width: 150, height: "auto", crop: 'limit' }],
-   
+  filename: function (req, res, cb) {
+    let fileName = res.originalname.split(".");
+    cb(null, fileName[0]); // The file on cloudinary would have the same name as the original file name
+  },
 });
+   
 
 const parser = multer({ storage });
 module.exports = parser;

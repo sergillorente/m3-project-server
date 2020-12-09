@@ -2,21 +2,35 @@ const express = require("express");
 const router = express.Router();
 const createError = require("http-errors");
 const { isLoggedIn } = require("../helpers/middlewares");
-const { create } = require("../models/user.model");
 const parser = require('./../config/cloudinary');
 
 const User = require('../models/user.model')
 
+
+// include CLOUDINARY:
+//upload a single image per once.
+// ADD an horitzontal middleware
+router.post("/upload", parser.single("picture"), (req, res, next) => {
+  console.log("file is: ", req.file);
+
+  if (!req.file) {
+    next(new Error("No file uploaded!"));
+    return;
+  }
+  // get secure_url from the file object and save it in the
+  // variable 'secure_url', but this can be any name, just make sure you remember to use the same in frontend
+  res.json({ secure_url: req.file.secure_url });
+});
+
+
 // GET // Show the user profile page with its form
 
-router.get('/profile', isLoggedIn, (req, res, next) => {
+router.get('/profile/:id', isLoggedIn, (req, res, next) => {
+    const {id} = req.params
+    //const userId = req.session.currentUser._id
 
-    User.find()
+    User.findById( id )
         .then( (response) => {
-
-            if(!response) {
-                return next(createError(404)) 
-            }
             res
                 .status(200)
                 .json(response)
@@ -28,28 +42,13 @@ router.get('/profile', isLoggedIn, (req, res, next) => {
 
 // PUT // Modify the inputs values inside if the profile form
 
-router.put('/profile/:profileid', isLoggedIn, parser.single('profilepic'), (req, res, next) => {
+router.put('/profile', isLoggedIn, (req, res, next) => {
+    const userId = req.session.currentUser._id
     // I am requesting the values from the form that I want to update
-    const { username, picture} = req.body;
+    const { username, picture } = req.body;
 
-    let imageUrl;
-    if (req.file) {
-        imageUrl = req.file.secure_url;
-    }
-
-    const profileId = req.params.profileid;
-
-    let update = {  username, picture}
-    if (imageUrl) {
-        update.picture = imageUrl
-    }
-
-    User.findByIdAndUpdate({ profileId, update })
+    User.findByIdAndUpdate( userId, { username, picture }, {new: true})
         .then( (response ) => {
-
-            if (!response) {
-                return next(createError(404))
-            }
 
             res
                 .status(200)

@@ -6,41 +6,6 @@ const saltRounds = 10;
 
 const User = require("../models/user.model");
 
-// const uploader = require("./../configs/cloudinary-setup");
-
-// // include CLOUDINARY:
-// //upload a single image per once.
-// // ADD an horitzontal middleware
-// router.post("/upload", uploader.single("image"), (req, res, next) => {
-//   console.log("file is: ", req.file);
-
-//   if (!req.file) {
-//     next(new Error("No file uploaded!"));
-//     return;
-//   }
-//   // get secure_url from the file object and save it in the
-//   // variable 'secure_url', but this can be any name, just make sure you remember to use the same in frontend
-//   res.json({ secure_url: req.file.secure_url });
-// });
-
-// // POST '/api/projects'
-// //Insert the image property coming from the body, from the form
-// router.post("/projects", (req, res, next) => {
-//   const { title, description, image } = req.body;
-
-//   Project.create({ title, description, image, tasks: [] })
-//     .then((createdProject) => {
-//       res.status(201).json(createdProject);
-//     })
-//     .catch((err) => {
-//       res
-//         .status(500) // Internal Server Error
-//         .json(err);
-//     });
-// });
-
-
-
 
 // HELPER FUNCTIONS
 const {

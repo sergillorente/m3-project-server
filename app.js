@@ -63,8 +63,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // ROUTER MIDDLEWARE
 app.use('/auth', authRouter);
 app.use('/api', hotelsRouter);
-app.use('/reviews', reviewsRouter);
-app.use('/user', userRouter)
+app.use('/api', reviewsRouter);
+app.use('/user', userRouter);
 
 
 // ERROR HANDLING
