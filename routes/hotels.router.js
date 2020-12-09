@@ -14,8 +14,8 @@ router.get('/hotels', isLoggedIn, (req, res, next) => {
     Hotel.find()
         .then( ( response ) => {
                 res
-                    .status(200) // hotels shown
-                    .json(response);
+                    .status(200) 
+                    .json(response); // hotels shown
         })
         .catch( (error) => {
             next( createError(error) ); //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
