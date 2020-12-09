@@ -10,12 +10,12 @@ const DB_NAME = 'oh-review';
 // CONNECT to mongo db (mongoose)
 
 mongoose
-    .connect(`mongodb://localhost:27017/${DB_Name}`, {
+    .connect(`mongodb://localhost:27017/${DB_NAME}`, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: false,
     })
-    .then( (x) => {
+    .then( x => {
         // AFTER CONNECTION , DROP THE EXISTING DATABASE
         console.log("Connected to DB" + DB_NAME);
 

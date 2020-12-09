@@ -10,7 +10,9 @@ const cors = require('cors');
 require('dotenv').config();
 
 const authRouter = require('./routes/auth.router');
-
+const hotelsRouter = require('./routes/hotels.router');
+const reviewsRouter = require('./routes/reviews.router');
+const userRouter = require('./routes/user.router');
 
 // MONGOOSE CONNECTION
 mongoose
@@ -60,7 +62,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ROUTER MIDDLEWARE
 app.use('/auth', authRouter);
-
+app.use('/api', hotelsRouter);
+app.use('/reviews', reviewsRouter);
+app.use('/user', userRouter)
 
 
 // ERROR HANDLING
@@ -83,7 +87,9 @@ app.use((err, req, res, next) => {
   // only render if the error ocurred before sending the response
   if (!res.headersSent) {
     const statusError = err.status || '500';
-    res.status(statusError).json(err);
+    res
+      .status(statusError)
+      .json(err);
   }
 });
 
