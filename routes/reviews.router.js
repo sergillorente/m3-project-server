@@ -13,7 +13,7 @@ const { json } = require("body-parser");
 router.get('/reviews/:hotelId', isLoggedIn, (req, res, next) => {
     const { hotelId } = req.match.params
 
-    const hotelReviews = Review.find({ hotelId })
+    Review.find({ hotelId })
         .then((reviewsOfHotel) => {
             res
                 .status(200)
@@ -31,22 +31,12 @@ router.get('/reviews/:hotelId', isLoggedIn, (req, res, next) => {
 router.get('/reviews/:hotelId/:userId', isLoggedIn, (req, res, next) => {
     const { hotelId, userId } = req.match.params
     
-    const hotelReviewsByUser = Review.find( { hotelId } )
-        .then( (reviewsByHotel) => {
+    Review.find( { hotelId, userId } )
+        .then( (reviewsByHotelAndUser) => {
             res
                 .status(200)
-                .json(reviewsByHotel)
+                .json(reviewsByHotelAndUser)
 
-            Review.findById( {userId} )
-                .then( (reviewsByUser) => {
-
-                    res
-                        .status(200)
-                        .json(reviewsByUser)
-                })
-                .catch( (error) => {
-                    ext( createError(error) );
-                })
         })
         .catch( (error) => {
             ext( createError(error) ); //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
@@ -57,14 +47,36 @@ router.get('/reviews/:hotelId/:userId', isLoggedIn, (req, res, next) => {
 // POST // Display the option to create a new review
 
 router.post('/reviews/:id', isLoggedIn, (req, res, next) => {
+    const { reviewId } = req.match.params
+    const { text, rating } = req.body
+
+    Review.findById( reviewId, { text, rating} )
+        .then( (specificReview) => {
+            res
+                .status(200)
+                .json(specificReview)
+        })
+        .catch( (error) => {
+            ext( createError(error) ); //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
+        })
 
 })
 
 
 // DELETE // You can delete a review that an specific user has created before
 
-router.delete('/reviews', isLoggedIn, (req, res, next) => {
+router.delete('/reviews/:id', isLoggedIn, (req, res, next) => {
+    const { reviewId } = req.match.params;
 
+    Review.findByIdAndRemove(reviewId)
+        .then( (reviewDeleted) =>{
+            res
+                .status()
+                .send(reviewDeleted)
+        })
+        .catch( (error) => {
+            ext( createError(error) ); //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
+        })
 })
 
 
