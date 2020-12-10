@@ -22,27 +22,7 @@ router.get('/reviews/:hotelId', isLoggedIn, (req, res, next) => {
         .catch( (error) => {
             next( createError(error) ); //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
         })
-    
 })
-
-
-// GET // Show the current reviews that an specific hotel has from an specific user
-
-router.get('/reviews/:hotelId/:userId', isLoggedIn, (req, res, next) => {
-    const { hotelId, userId } = req.match.params
-    
-    Review.find( { hotelId, userId } )
-        .then( (reviewsByHotelAndUser) => {
-            res
-                .status(200)
-                .json(reviewsByHotelAndUser)
-
-        })
-        .catch( (error) => {
-            ext( createError(error) ); //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
-        })
-})
-
 
 // POST // Display the option to create a new review
 
