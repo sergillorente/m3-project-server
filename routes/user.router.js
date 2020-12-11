@@ -36,7 +36,7 @@ router.get('/profile/:id', isLoggedIn, (req, res, next) => {
                 .json(response)
         })
         .catch( (error) => {
-            next( createError(error) );  //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
+            next( createError(error, `The profile for this specific user can't be shown`) );  //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
         })
 })
 
@@ -55,7 +55,7 @@ router.put('/profile', isLoggedIn, (req, res, next) => {
                 .json(response)
         })
         .catch( (error) =>{
-            next( createError(error) );  //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
+            next( createError(error, `The updates made in the profile couldn't be processed`) );  //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
         })
 })
 

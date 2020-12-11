@@ -20,7 +20,7 @@ router.get('/reviews/:hotelId', isLoggedIn, (req, res, next) => {
                 .json(reviewsOfHotel)
         })
         .catch( (error) => {
-            next( createError(error) ); //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
+            next( createError(error, `The reviews of this specific hotel cannot be shown`) ); //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
         })
 })
 
@@ -37,7 +37,7 @@ router.post('/reviews/:id', isLoggedIn, (req, res, next) => {
                 .json(specificReview)
         })
         .catch( (error) => {
-            ext( createError(error) ); //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
+            ext( createError(error, `The creation request of this review couldn't be made`) ); //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
         })
 
 })
@@ -55,7 +55,7 @@ router.delete('/reviews/:id', isLoggedIn, (req, res, next) => {
                 .send(reviewDeleted)
         })
         .catch( (error) => {
-            ext( createError(error) ); //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
+            ext( createError(error, `The review has not been deleted`) ); //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
         })
 })
 

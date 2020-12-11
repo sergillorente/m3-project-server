@@ -18,7 +18,7 @@ router.get('/hotels', (req, res, next) => {
                     .json(response); // hotels shown
         })
         .catch( (error) => {
-            next( createError(error) ); //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
+            next( createError(error, `The hotels haven't been able to show`) ); //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
         })
 })
 
@@ -35,7 +35,7 @@ router.get('/hotels/:id', isLoggedIn, (req, res, next) => {
                 .json(response)
         })
         .catch( (error) =>{
-            next( createError(error) );  //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
+            next( createError(error, 'The requested hotel cannot be displayed') );  //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
         })
 })
 
