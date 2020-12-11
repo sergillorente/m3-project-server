@@ -24,7 +24,7 @@ router.post('/signup', isNotLoggedIn, validationSignup, (req, res, next) => {
 
       if (foundUser) {
         // If username is already taken, then return error response
-        return next( createError(400, 'User already exists.') ); // Bad Request
+        return next( createError(400, 'User already exists') ); // Bad Request
       }
       else {
         // If username is available, go and create a new user
@@ -44,12 +44,12 @@ router.post('/signup', isNotLoggedIn, validationSignup, (req, res, next) => {
 
           })
           .catch( (err) => {
-            next( createError(err, 'There was an error during the signup.') );  //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
+            next( createError(err, 'There was an error during the signup') );  //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
           });
       }
     })
     .catch( (err) => {
-      next( createError(err, 'There was an error during the signup.') );
+      next( createError(err, 'There was an error during the signup') );
     });
 
 
@@ -66,7 +66,7 @@ router.post('/login', isNotLoggedIn, validationLogin, (req, res, next) => {
     .then( (user) => {
       if (! user) {
         // If user with that username can't be found, respond with an error
-        return next( createError(404, `The user doesn't exist in the DB`)  );  // Not Found
+        return next( createError(404, `The user doesn't exist`)  );  // Not Found
       }
 
       const passwordIsValid = bcrypt.compareSync(password, user.password); //  true/false

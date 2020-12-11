@@ -13,7 +13,7 @@ router.get('/hotels', (req, res, next) => {
     
     Hotel.find()
         .then( ( response ) => {
-                res
+            res
                     .status(200) 
                     .json(response); // hotels shown
         })
