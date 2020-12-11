@@ -9,7 +9,7 @@ const Hotel = require('../models/hotel.model');
 
 // Route to GET all hotels (when logged in)
 
-router.get('/hotels', isLoggedIn, (req, res, next) => {
+router.get('/hotels', (req, res, next) => {
     
     Hotel.find()
         .then( ( response ) => {

@@ -21,6 +21,15 @@ exports.validationLogin = (req, res, next) => {
   else next();
 };
 
+exports.validationSignup = (req, res, next) => {
+  const { username, email, password } = req.body;
+
+  if (!username || !email || !password) {
+    next(createError(400, 'Please fill all required fields.'))
+  }
+  else next();
+};
+
 
 
 // Above exporting is same as what we did before:
