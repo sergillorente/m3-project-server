@@ -6,7 +6,7 @@ const hotelSchema = new Schema(
         image: String,
         title: String,
         description: String,
-        district: String,
+        district: {type: String, enum:['Ciutat Vella', 'Eixample', 'Sants-Montjuïc', 'Les Corts', 'Sarrià-Sant Gervasi', 'Gràcia', 'Horta-Guinardó', 'Nou Barris', 'Sant Martí']},
         category: Number
     }
 );
