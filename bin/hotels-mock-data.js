@@ -70,7 +70,7 @@ const hotels = [
         "category": 3
     },
     {
-        "image": "https://lh3.googleusercontent.com/proxy/ioRDzEhS0IGZBCorFcJnB_3775REIfMP3IJtROIGvFDid6qsBS4S-ZyVk_WwY14eLrNGxyAhg-yplsBiApW5YzRPvOjz1Vod1zUSgxwo8ZmI89ubDLRkkUhiOEs7YIw-5MJK5N1BJAVR2GQ1xajO5uq0CdMg550",
+        "image": "https://cdn.atrapalo.com/hoteles/picture/s/436/2/1/4081181.jpg",
         "title": "Hotel AC by Marriott Victoria Suites",
         "description": "The elegant AC Hotel Victoria Suites features 58 beautiful rooms of 45 square meters, an amazing terrace, a fitness center and parking on-site. AC Hotel Victoria Suites also boasts two well-designed event rooms. The hotel is located in the Pedralbes residential quarter, next to the barrio de las Corts area, the famous Camp Nou Stadium, and Football Museum. This location provides easy access to the Centre of Barcelona, El Prat airport and the train station. El Palau Reial de Pedralbes, previously a royal residence, the Palacio de Congresos, and the Fira de Barcelona exhibition centre are also within a short distance of the hotel. Santa Clara is a new restaurant with a garden in the Pedralbes district of Barcelona, opening in November 2015. Decorated by the prestigious interior decorator, Jaime Beriestain and headed by the owners of Restaurant Igueldo, Santa Clara serves honest, classical cuisine, based on top-quality market products prepared with the utmost care.",
         "district": "Les Corts",
