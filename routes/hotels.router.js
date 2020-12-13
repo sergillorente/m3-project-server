@@ -25,7 +25,7 @@ router.get('/hotels', (req, res, next) => {
 // GET hotels by its ID from DB
 
 router.get('/hotels/:id', isLoggedIn, (req, res, next) => {
-    const { id } = req.match.params
+    const { id } = req.params
 
     Hotel.findById(id)
         .then( (response) => {
