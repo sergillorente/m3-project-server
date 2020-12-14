@@ -11,7 +11,7 @@ const { json } = require("body-parser");
 // GET // Show the current reviews than an specific hotel has
 
 router.get('/reviews/:hotelId', isLoggedIn, (req, res, next) => {
-    const { hotelId } = req.match.params
+    const { hotelId } = req.params
 
     Review.find({ hotelId })
         .then((reviewsOfHotel) => {
@@ -26,11 +26,16 @@ router.get('/reviews/:hotelId', isLoggedIn, (req, res, next) => {
 
 // POST // Display the option to create a new review
 
-router.post('/reviews/:id', isLoggedIn, (req, res, next) => {
-    const { reviewId } = req.match.params
+router.post('/reviews/:hotelId', isLoggedIn, (req, res, next) => {
+    const { hotelId } = req.params
     const { text, rating } = req.body
 
-    Review.findById( reviewId, { text, rating} )
+    if (!text || !rating)
+        return next(createError(400, "Please fill all required fields"));
+
+    const userId = req.session.currentUser._id
+
+    Review.create({ text, rating, hotelId, userId })
         .then( (specificReview) => {
             res
                 .status(200)
