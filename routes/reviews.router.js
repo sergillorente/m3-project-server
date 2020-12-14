@@ -13,7 +13,7 @@ const { json } = require("body-parser");
 router.get('/reviews/:hotelId', isLoggedIn, (req, res, next) => {
     const { hotelId } = req.params
 
-    Review.find({ hotelId })
+    Review.find({ hotelId }).populate('userId', 'username picture')
         .then((reviewsOfHotel) => {
             res
                 .status(200)
@@ -51,13 +51,13 @@ router.post('/reviews/:hotelId', isLoggedIn, (req, res, next) => {
 // DELETE // You can delete a review that an specific user has created before
 
 router.delete('/reviews/:reviewId', isLoggedIn, (req, res, next) => {
-    const { reviewId } = req.match.params;
+    const { reviewId } = req.params;
 
     Review.findByIdAndRemove(reviewId)
         .then( (reviewDeleted) =>{
             res
-                .status()
-                .send(reviewDeleted)
+            .status(200)
+            .json(reviewDeleted)
         })
         .catch( (error) => {
             ext( createError(error, `The review has not been deleted`) ); //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
