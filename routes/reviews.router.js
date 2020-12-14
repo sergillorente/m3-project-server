@@ -50,7 +50,7 @@ router.post('/reviews/:hotelId', isLoggedIn, (req, res, next) => {
 
 // DELETE // You can delete a review that an specific user has created before
 
-router.delete('/reviews/:id', isLoggedIn, (req, res, next) => {
+router.delete('/reviews/:reviewId', isLoggedIn, (req, res, next) => {
     const { reviewId } = req.match.params;
 
     Review.findByIdAndRemove(reviewId)
