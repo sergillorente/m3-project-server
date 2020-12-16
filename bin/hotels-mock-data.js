@@ -1,6 +1,6 @@
 const hotels = [
     {
-        "image": "https://cf.bstatic.com/images/hotel/max500/223/22350093.jpg",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThId07Cf2I9KsawZu_ZS04losvmqhAibYGFQ&usqp=CAU",
         "title": "Hotel California Barcelona",
         "description": "The Hotel California offers accommodation just in the center of Barcelona with cozy rooms free-smoke, decorated with high quality materials and designed to offer the best comfort and well-being to all our guests. All of them are moderns, quiet, Wi-Fi, TV HD, temperature controlled and much more services awaiting for you to be enjoyed.",
         "district": "Ciutat Vella",
@@ -42,7 +42,7 @@ const hotels = [
         "category": 5
     },
     {
-        "image": "https://www.hotel-azulbarcelona.com/wp-content/uploads/sites/1827/nggallery/gallery-hotel/HOTEL_AZUL_FACHADA_01.jpg",
+        "image": "https://taxirapidbcn.com/wp-content/uploads/2018/03/Hotel-Acta-Azul-Barcelona.jpg",
         "title": "Hotel Acta Azul",
         "description": "We are a 5-minute walk away from Plaza España, just a few minutes from the Fira Barcelona Montjuic Exhibition Centre and next to the Las Arenas shopping centre. With excellent connections to the main lines of public transport, the centre of Barcelona, the main attractions and El Prat de Llobregat International Airport are all within easy reach.",
         "district": "Sants-Montjuïc",
@@ -84,7 +84,7 @@ const hotels = [
         "category": 5
     },
     {
-        "image": "https://lh3.googleusercontent.com/proxy/HRRX3lGtC4wsZs0-0nsyqlrOAf-R89l6G96eHybo1d-XTABnaHxQIc79Zz9d5wEGxDSXkYlr58RIUBEWewpiBeaFtF9f4nMCCirf4X5Ta1g06rsOpShvUeptt7MJONEL_kYSWismHXsc",
+        "image": "https://lh3.googleusercontent.com/proxy/cAZ82V2Rut3nhWZLMcAzz3j2i0ga-rlI60oC6h3M2-5WYQksCOAcWeRfeXOsRCiL1O6RZgrXRPZEcWpfoe4v3YyllPbmq5TuqXlyeb-7vOK499e83UGvjJpewsH3raFwPs5nLGKlW225",
         "title": "Hotel Silken Sant Gervasi",
         "description": "The welcoming grounds of the Hotel Silken Sant Gervasi make our guests’ stays incredibly enjoyable experiences. The hotel’s size, with just 63 rooms, is part of its unique charm, as it gives it the warmth of smaller establishments. It is perfectly located in Barcelona, in the quiet and safe neighbourhood of Sarrià-Sant Gervasi, very well-connected with the city’s historic centre, as well as other points of interest like the Montjuïc park and Fira 2 convention centre, as well as tourist highlights like Güell Park or Tibidabo Mountain. There is a metro stop just 50 metres from the hotel’s door, making the Silken St. Gervasi a magnificent option to experience the City of Counts in an innovative and practical way.",
         "district": "Sarrià-Sant Gervasi",
@@ -161,7 +161,7 @@ const hotels = [
         "category": 3
     },
     {
-        "image": "https://upload.wikimedia.org/wikipedia/commons/6/6d/52_Hotel_Meli%C3%A0_Sky%2C_av._Diagonal.JPG",
+        "image": "https://travelupdate.com/wp-content/uploads/2016/06/IMG_5030-1280x640.jpg",
         "title": "Melià Barcelona Sky",
         "description": "Meliá Barcelona Sky is located in one of the city’s most avant-garde and iconic skyscrapers. Enjoy the stunning views and the most exclusive services",
         "district": "Sant Martí",
