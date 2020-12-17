@@ -13,21 +13,22 @@ const { json } = require("body-parser");
 router.get('/reviews/:hotelId', isLoggedIn, (req, res, next) => {
     // receive the review ids through params
     const { hotelId } = req.params
-    // Find the review id and then populate it to obtain the username and the picture
+    // Find the review id and then populate it to obtain the username and the picture corresponding to that id
     Review.find({ hotelId }).populate('userId', 'username picture')
         .then((reviewsOfHotel) => {
             res
                 .status(200)
-                .json(reviewsOfHotel)
+                .json(reviewsOfHotel) // succesfully done
         })
         .catch( (error) => {
-            next( createError(error, `The reviews of this specific hotel cannot be shown`) ); //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
+            next( createError(error, `The reviews of this specific hotel cannot be shown`) ); // Internal Server Error
         })
 })
 
 // POST // Display the option to create a new review
 
 router.post('/reviews/:hotelId', isLoggedIn, (req, res, next) => {
+    // through req.params we'll get the hotel id, and once we get, through req.body we
     const { hotelId } = req.params
     const { text, rating } = req.body
 

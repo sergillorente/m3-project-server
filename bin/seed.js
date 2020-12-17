@@ -10,7 +10,7 @@ const DB_NAME = 'oh-review';
 // CONNECT to mongo db (mongoose)
 
 mongoose
-    .connect(`mongodb://localhost:27017/${DB_NAME}`, {
+    .connect("mongodb+srv://admin:80QxTjZkCmvmeXBI@cluster0.sypc9.mongodb.net/ohreview?retryWrites=true&w=majority", {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: false,
