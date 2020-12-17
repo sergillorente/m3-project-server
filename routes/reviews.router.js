@@ -33,18 +33,18 @@ router.post('/reviews/:hotelId', isLoggedIn, (req, res, next) => {
     const { text, rating } = req.body
 
     if (!text || !rating)
-        return next(createError(400, "Please fill all required fields"));
+        return next(createError(400, "Please fill all required fields")); // if some field is missing
 
-    const userId = req.session.currentUser._id
+    const userId = req.session.currentUser._id // otherwise create a new session refering to the user's id
 
-    Review.create({ text, rating, hotelId, userId })
+    Review.create({ text, rating, hotelId, userId }) // now, let's create a review following the review model
         .then( (specificReview) => {
             res
                 .status(200)
-                .json(specificReview)
+                .json(specificReview) // succesfully done
         })
         .catch( (error) => {
-            ext( createError(error, `The creation request of this review couldn't be made`) ); //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
+            ext( createError(error, `The creation request of this review couldn't be made`) ); // Internal Server Error
         })
 
 })
@@ -53,16 +53,17 @@ router.post('/reviews/:hotelId', isLoggedIn, (req, res, next) => {
 // DELETE // You can delete a review that an specific user has created before
 
 router.delete('/reviews/:reviewId', isLoggedIn, (req, res, next) => {
+    // we delete it by taking the id coming from params
     const { reviewId } = req.params;
 
     Review.findByIdAndRemove(reviewId)
         .then( (reviewDeleted) =>{
             res
             .status(200)
-            .json(reviewDeleted)
+            .json(reviewDeleted) // succesfully done
         })
         .catch( (error) => {
-            ext( createError(error, `The review has not been deleted`) ); //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
+            ext( createError(error, `The review has not been deleted`) ); // Internal Server Error
         })
 })
 
