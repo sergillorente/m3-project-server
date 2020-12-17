@@ -11,8 +11,9 @@ const { json } = require("body-parser");
 // GET // Show the current reviews than an specific hotel has
 
 router.get('/reviews/:hotelId', isLoggedIn, (req, res, next) => {
+    // receive the review ids through params
     const { hotelId } = req.params
-
+    // Find the review id and then populate it to obtain the username and the picture
     Review.find({ hotelId }).populate('userId', 'username picture')
         .then((reviewsOfHotel) => {
             res

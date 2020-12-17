@@ -10,7 +10,7 @@ const Hotel = require('../models/hotel.model');
 // Route to GET all hotels (when logged in)
 
 router.get('/hotels', (req, res, next) => {
-    
+    // we call all the hotels from the DB
     Hotel.find()
         .then( ( response ) => {
             res
@@ -18,24 +18,25 @@ router.get('/hotels', (req, res, next) => {
                     .json(response); // hotels shown
         })
         .catch( (error) => {
-            next( createError(error, `The hotels haven't been able to show`) ); //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
+            next( createError(error, `The hotels haven't been able to show`) ); // Internal Server Error
         })
 })
 
-// GET hotels by its ID from DB
+// route to GET hotels by its ID from DB
 
 router.get('/hotels/:id', isLoggedIn, (req, res, next) => {
+    // we request an specific hotel. In order to do that we call this hotel by params and adding the id of it 
     const { id } = req.params
-
+    
     Hotel.findById(id)
         .then( (response) => {
             
             res
                 .status(200)
-                .json(response)
+                .json(response) // succesfully done
         })
         .catch( (error) =>{
-            next( createError(error, 'The requested hotel cannot be displayed') );  //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
+            next( createError(error, 'The requested hotel cannot be displayed') );  // Internal Server Error
         })
 })
 

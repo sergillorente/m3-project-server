@@ -49,7 +49,7 @@ router.post('/signup', isNotLoggedIn, validationSignup, (req, res, next) => {
       }
     })
     .catch( (err) => {
-      next( createError(err, 'There was an error during the signup') );
+      next( createError(err, 'There was an error during the signup') );  //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
     });
 
 
@@ -87,21 +87,22 @@ router.post('/login', isNotLoggedIn, validationLogin, (req, res, next) => {
 
     })
     .catch( (err) => {
-      next( createError(err, `There is some error during the login`)  );
+      next( createError(err, `There is some error during the login`)  ); // Internal error 500
     });
 })
 
 
 // GET '/auth/logout'
 router.get('/logout',  isLoggedIn, (req, res, next) => {
+  // destroy the session to log out
   req.session.destroy( function(err){
     if (err) {
-      return next(err, `The user couldn't logout`);
+      return next(err, `The user couldn't logout`); // there has been a problem with the destroyment process
     }
 
     res
       .status(204)  //  No Content
-      .send();
+      .send(); // Successfully done
   } )
 })
 
@@ -109,11 +110,12 @@ router.get('/logout',  isLoggedIn, (req, res, next) => {
 
 // GET '/auth/me'
 router.get('/me', isLoggedIn, (req, res, next) => {
+  // creation of the current session for the user with a cookie
   const currentUserSessionData = req.session.currentUser;
 
   res
     .status(200)
-    .json(currentUserSessionData);
+    .json(currentUserSessionData); // succesfully done
 
 })
 
