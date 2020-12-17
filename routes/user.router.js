@@ -9,17 +9,16 @@ const User = require('../models/user.model')
 
 // GET // Show the user profile page with its form
 router.get('/profile/:id', isLoggedIn, (req, res, next) => {
-    // the user id os coming from params
     const { id } = req.params
 
     User.findById(id)
         .then((response) => {
             res
                 .status(200)
-                .json(response) // successfully done
+                .json(response) 
         })
         .catch((error) => {
-            next(createError(error, `The profile for this specific user can't be shown`)); // Internal Server Error
+            next(createError(error, `The profile for this specific user can't be shown`)); 
         })
 })
 
@@ -27,10 +26,8 @@ router.get('/profile/:id', isLoggedIn, (req, res, next) => {
 
 router.put('/profile', isLoggedIn, (req, res, next) => {
     const userId = req.session.currentUser._id
-    // I am requesting the values from the form that I want to update
     const { username, password } = req.body;
 
-    // check if username, if not, return error 'Please fill all required fields'
     if (!username) {
         return next(createError(400, "Please fill all required fields"));
     }
@@ -43,17 +40,17 @@ router.put('/profile', isLoggedIn, (req, res, next) => {
         updates.password = encryptedPassword
     }
 
-    User.findByIdAndUpdate(userId, updates, { new: true }) // updating the username and password, and setting this updated as changed right after are posted
+    User.findByIdAndUpdate(userId, updates, { new: true }) 
         .then((user) => {
             user.password = "*";
             req.session.currentUser = user;
             
             res
                 .status(200)
-                .json(user) // successfully done
+                .json(user) 
         })
         .catch((error) => {
-            next(createError(error, `The updates made in the profile couldn't be processed`));  //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
+            next(createError(error, `The updates made in the profile couldn't be processed`));  
         })
 })
 

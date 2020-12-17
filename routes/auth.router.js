@@ -23,33 +23,29 @@ router.post('/signup', isNotLoggedIn, validationSignup, (req, res, next) => {
     .then( (foundUser) => {
 
       if (foundUser) {
-        // If username is already taken, then return error response
-        return next( createError(400, 'User already exists') ); // Bad Request
+        return next( createError(400, 'User already exists') ); 
       }
       else {
-        // If username is available, go and create a new user
         const salt = bcrypt.genSaltSync(saltRounds);
         const encryptedPassword = bcrypt.hashSync(password, salt);
-        console.log(salt);
 
         User.create( { username, email, password: encryptedPassword })
           .then( (createdUser) => {
-            // set the `req.session.currentUser` using newly created user object, to trigger creation of the session and cookie
             createdUser.password = "*";
-            req.session.currentUser = createdUser; // automatically logs in the user by setting the session/cookie
+            req.session.currentUser = createdUser; 
 
             res
-              .status(201) // Created
-              .json(createdUser); // res.send()
+              .status(201) 
+              .json(createdUser); 
 
           })
           .catch( (err) => {
-            next( createError(err, 'There was an error during the signup') );  //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
+            next( createError(err, 'There was an error during the signup') );  
           });
       }
     })
     .catch( (err) => {
-      next( createError(err, 'There was an error during the signup') );  //  new Error( { message: err, statusCode: 500 } ) // Internal Server Error
+      next( createError(err, 'There was an error during the signup') );  
     });
 
 
@@ -65,14 +61,12 @@ router.post('/login', isNotLoggedIn, validationLogin, (req, res, next) => {
   User.findOne({ email })
     .then( (user) => {
       if (! user) {
-        // If user with that username can't be found, respond with an error
-        return next( createError(404, `The user doesn't exist`)  );  // Not Found
+        return next( createError(404, `The user doesn't exist`)  );  
       }
 
-      const passwordIsValid = bcrypt.compareSync(password, user.password); //  true/false
+      const passwordIsValid = bcrypt.compareSync(password, user.password); 
 
       if (passwordIsValid) {
-        // set the `req.session.currentUser`, to trigger creation of the session
         user.password = "*";
         req.session.currentUser = user;
 
@@ -82,27 +76,26 @@ router.post('/login', isNotLoggedIn, validationLogin, (req, res, next) => {
 
       }
       else {
-        next( createError(401, `Password and email are not correct`) ); // Unathorized
+        next( createError(401, `Password and email are not correct`) ); 
       }
 
     })
     .catch( (err) => {
-      next( createError(err, `There is some error during the login`)  ); // Internal error 500
+      next( createError(err, `There is some error during the login`)  ); 
     });
 })
 
 
 // GET '/auth/logout'
 router.get('/logout',  isLoggedIn, (req, res, next) => {
-  // destroy the session to log out
   req.session.destroy( function(err){
     if (err) {
-      return next(err, `The user couldn't logout`); // there has been a problem with the destroyment process
+      return next(err, `The user couldn't logout`); 
     }
 
     res
-      .status(204)  //  No Content
-      .send(); // Successfully done
+      .status(204)  
+      .send(); 
   } )
 })
 
@@ -110,12 +103,11 @@ router.get('/logout',  isLoggedIn, (req, res, next) => {
 
 // GET '/auth/me'
 router.get('/me', isLoggedIn, (req, res, next) => {
-  // creation of the current session for the user with a cookie
   const currentUserSessionData = req.session.currentUser;
 
   res
     .status(200)
-    .json(currentUserSessionData); // succesfully done
+    .json(currentUserSessionData); 
 
 })
 
