@@ -33,8 +33,8 @@ app.use(
   cors({
     credentials: true,
     origin: ['http://localhost:3000',
-    'http://your-heroku-app-name.herokuapp.com',
-    'https://your-heroku-app-name.herokuapp.com' ],
+    'http://oh-review.herokuapp.com',
+    'https://oh-review.herokuapp.com' ],
   }),
 );
 

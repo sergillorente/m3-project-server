@@ -84,7 +84,7 @@ const hotels = [
         "category": 5
     },
     {
-        "image": "https://lh3.googleusercontent.com/proxy/cAZ82V2Rut3nhWZLMcAzz3j2i0ga-rlI60oC6h3M2-5WYQksCOAcWeRfeXOsRCiL1O6RZgrXRPZEcWpfoe4v3YyllPbmq5TuqXlyeb-7vOK499e83UGvjJpewsH3raFwPs5nLGKlW225",
+        "image": "http://photos1.hotelsearch.com/0115/0707/hotel-silken-st-gervasi-barcelona_big.jpg",
         "title": "Hotel Silken Sant Gervasi",
         "description": "The welcoming grounds of the Hotel Silken Sant Gervasi make our guests’ stays incredibly enjoyable experiences. The hotel’s size, with just 63 rooms, is part of its unique charm, as it gives it the warmth of smaller establishments. It is perfectly located in Barcelona, in the quiet and safe neighbourhood of Sarrià-Sant Gervasi, very well-connected with the city’s historic centre, as well as other points of interest like the Montjuïc park and Fira 2 convention centre, as well as tourist highlights like Güell Park or Tibidabo Mountain. There is a metro stop just 50 metres from the hotel’s door, making the Silken St. Gervasi a magnificent option to experience the City of Counts in an innovative and practical way.",
         "district": "Sarrià-Sant Gervasi",
