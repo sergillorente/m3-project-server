@@ -15,10 +15,10 @@ router.get('/profile/:id', isLoggedIn, (req, res, next) => {
         .then((response) => {
             res
                 .status(200)
-                .json(response) 
+                .json(response)
         })
         .catch((error) => {
-            next(createError(error, `The profile for this specific user can't be shown`)); 
+            next(createError(error, `The profile for this specific user can't be shown`));
         })
 })
 
@@ -32,7 +32,7 @@ router.put('/profile', isLoggedIn, (req, res, next) => {
         return next(createError(400, "Please fill all required fields"));
     }
 
-    const updates = { username } 
+    const updates = { username }
 
     if (password) {
         const salt = bcrypt.genSaltSync(saltRounds);
@@ -40,17 +40,31 @@ router.put('/profile', isLoggedIn, (req, res, next) => {
         updates.password = encryptedPassword
     }
 
-    User.findByIdAndUpdate(userId, updates, { new: true }) 
+    User.findByIdAndUpdate(userId, updates, { new: true })
         .then((user) => {
             user.password = "*";
             req.session.currentUser = user;
-            
+
             res
                 .status(200)
-                .json(user) 
+                .json(user)
         })
         .catch((error) => {
-            next(createError(error, `The updates made in the profile couldn't be processed`));  
+            next(createError(error, `The updates made in the profile couldn't be processed`));
+        })
+})
+
+router.delete('/delete/:id', (req, res, next) => {
+    const { id } = req.params;
+
+    User.findByIdAndRemove(id)
+        .then((response) => {
+            res
+                .status(200)
+                .json(response)
+        })
+        .catch((error) => {
+            next(createError(error, `Error deleting user`));
         })
 })
 
