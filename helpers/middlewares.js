@@ -19,11 +19,29 @@ exports.validationLogin = (req, res, next) => {
   else next();
 };
 
-exports.validationSignup = (req, res, next) => {
-  const { username, email, password } = req.body;
+// exports.validationSignup = (req, res, next) => {
+//   const { email, password } = req.body;
 
-  if (!username || !email || !password) {
-    next(createError(400, 'Please fill all required fields in the signup'))
+//   if ( !email || !password) {
+//     next(createError(400, 'Please fill all required fields in the signup'))
+//   }
+//   else next();
+// };
+
+exports.validationSignupEmail = (req, res, next) => {
+  const { email } = req.body;
+
+  if ( !email ) {
+    next(createError(400, 'Please add an email. Remember the @ sign'))
+  }
+  else next();
+};
+
+exports.validationSignupPassword = (req, res, next) => {
+  const { password } = req.body;
+
+  if ( !password ) {
+    next(createError(400, 'Please add a password'))
   }
   else next();
 };
