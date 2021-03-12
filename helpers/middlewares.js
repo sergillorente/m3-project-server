@@ -19,14 +19,14 @@ exports.validationLogin = (req, res, next) => {
   else next();
 };
 
-// exports.validationSignup = (req, res, next) => {
-//   const { email, password } = req.body;
+exports.validationSignup = (req, res, next) => {
+  const { email, password } = req.body;
 
-//   if ( !email || !password) {
-//     next(createError(400, 'Please fill all required fields in the signup'))
-//   }
-//   else next();
-// };
+  if ( !email & !password) {
+    next(createError(400, 'Please fill all required fields'))
+  }
+  else next();
+};
 
 exports.validationSignupEmail = (req, res, next) => {
   const { email } = req.body;
