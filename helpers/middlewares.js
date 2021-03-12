@@ -22,7 +22,7 @@ exports.validationLogin = (req, res, next) => {
 exports.validationSignup = (req, res, next) => {
   const { email, password } = req.body;
 
-  if ( !email & !password) {
+  if ( !email && !password) {
     next(createError(400, 'Please fill all required fields'))
   }
   else next();
