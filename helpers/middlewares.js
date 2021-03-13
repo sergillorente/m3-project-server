@@ -21,33 +21,24 @@ exports.validationLogin = (req, res, next) => {
 
 exports.validationSignup = (req, res, next) => {
   const { email, password } = req.body;
-  // const errorEmailAndPassword = "Please fill all required fields";
 
-  if ( !email && !password) {
-    // return errorEmailAndPassword
+  if ( !email || !password) {
     next(createError(400, 'Please fill all required fields'))
   }
   else next();
 };
 
-exports.validationSignupEmail = (req, res, next) => {
+exports.checkEmail = (req, res, next) => {
   const { email } = req.body;
-  // const errorEmail = "Please add an email. Remember the @ sign"
 
-  if ( !email ) {
-    // return errorEmail
-    next(createError(400, 'Please add an email. Remember the @ sign'))
+  console.log(email);
+
+  const isValidEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
   }
-  else next();
-};
 
-exports.validationSignupPassword = (req, res, next) => {
-  const { password } = req.body;
-  // const errorPassword = "Please add a password"
-
-  if ( !password ) {
-    // return errorPassword
-    next(createError(400, 'Please add a password'))
+  if ( !isValidEmail(email) ) {
+    next(createError(400, 'Please add an email. Remember the @ sign'))
   }
   else next();
 };

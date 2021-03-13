@@ -13,12 +13,11 @@ const {
   isNotLoggedIn,
   validationLogin,
   validationSignup,
-  validationSignupEmail,
-  validationSignupPassword
+  checkEmail,
 } = require("../helpers/middlewares");
 
 // POST '/auth/signup'
-router.post('/signup', isNotLoggedIn, validationSignup, validationSignupEmail, validationSignupPassword, (req, res, next) => {
+router.post('/signup', isNotLoggedIn, validationSignup, checkEmail, (req, res, next) => {
   const { username, email, password } = req.body;
 
   User.findOne({ email })
